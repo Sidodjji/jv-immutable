@@ -6,6 +6,11 @@ public class Engine implements Cloneable {
     private int horsePower;
     private String manufacturer;
 
+    public Engine(int horsePower, String manufacturer) {
+        this.horsePower = horsePower;
+        this.manufacturer = manufacturer;
+    }
+
     public int getHorsePower() {
         return horsePower;
     }
@@ -24,7 +29,9 @@ public class Engine implements Cloneable {
 
     @Override
     public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Engine engine = (Engine) o;
         return horsePower == engine.horsePower && Objects.equals(manufacturer, engine.manufacturer);
     }
@@ -34,18 +41,13 @@ public class Engine implements Cloneable {
         try {
             return (Engine) super.clone();
         } catch (CloneNotSupportedException e) {
-            throw new RuntimeException("Can't create copy of Engine object" ,e);
+            throw new RuntimeException("Can't create copy of Engine object", e);
         }
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(horsePower, manufacturer);
-    }
-
-    public Engine(int horsePower, String manufacturer) {
-        this.horsePower = horsePower;
-        this.manufacturer = manufacturer;
     }
 
     @Override

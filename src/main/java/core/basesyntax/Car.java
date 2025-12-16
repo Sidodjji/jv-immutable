@@ -13,6 +13,13 @@ public final class Car {
     private final List<Wheel> wheels;
     private final Engine engine;
 
+    public Car(int year, String color, List<Wheel> wheels, Engine engine) {
+        this.year = year;
+        this.color = color;
+        this.wheels = new ArrayList<>(getWheelsCopy(wheels));
+        this.engine = engine == null ? null : engine.clone();
+    }
+
     public Car changeColor(String newColor) {
         return new Car(this.year, newColor, this.wheels, this.engine);
     }
@@ -29,9 +36,13 @@ public final class Car {
 
     @Override
     public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Car car = (Car) o;
-        return year == car.year && Objects.equals(color, car.color) && Objects.equals(wheels, car.wheels) && Objects.equals(engine, car.engine);
+        return year == car.year && Objects.equals(color, car.color)
+                && Objects.equals(wheels, car.wheels)
+                && Objects.equals(engine, car.engine);
     }
 
     @Override
@@ -64,13 +75,6 @@ public final class Car {
             return null;
         }
         return engine.clone();
-    }
-
-    public Car(int year, String color, List<Wheel> wheels, Engine engine) {
-        this.year = year;
-        this.color = color;
-        this.wheels = new ArrayList<>(getWheelsCopy(wheels));
-        this.engine = engine == null ? null : engine.clone();
     }
 
     @Override
