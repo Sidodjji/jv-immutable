@@ -41,8 +41,7 @@ public final class Car {
         }
         Car car = (Car) o;
         return year == car.year && Objects.equals(color, car.color)
-                && Objects.equals(wheels, car.wheels)
-                && Objects.equals(engine, car.engine);
+                && Objects.equals(wheels, car.wheels) && Objects.equals(engine, car.engine);
     }
 
     @Override
